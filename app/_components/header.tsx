@@ -7,6 +7,7 @@ import React from 'react'
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
 import {RegisterLink, LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
+import { useKindeBrowserClient } from '@kinde-oss/kinde-auth-nextjs'
 
 const menuItems = [
     { name: 'Features', href: '#link' },
@@ -18,6 +19,8 @@ const menuItems = [
 export const HeroHeader = () => {
     const [menuState, setMenuState] = React.useState(false)
     const [isScrolled, setIsScrolled] = React.useState(false)
+    const {getUser,isLoading} = useKindeBrowserClient()
+    const user = getUser()
 
     React.useEffect(() => {
         const handleScroll = () => {
